@@ -148,6 +148,7 @@ class BME280(object):
         lsb = self._device.readU8(BME280_REGISTER_TEMP_DATA + 1)
         xlsb = self._device.readU8(BME280_REGISTER_TEMP_DATA + 2)
         raw = ((msb << 16) | (lsb << 8) | xlsb) >> 4
+        print 'raw temp = {}'.format(raw)
         return raw
 
     def read_raw_pressure(self):
