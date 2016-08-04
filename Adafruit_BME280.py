@@ -174,8 +174,10 @@ class BME280(object):
         # float in Python is double precision
         UT = float(self.read_raw_temp())
         var1 = (UT / 16384.0 - self.dig_T1 / 1024.0) * float(self.dig_T2)
+        print 'var1 = {}'.format(var1)
         var2 = ((UT / 131072.0 - self.dig_T1 / 8192.0) * (
         UT / 131072.0 - self.dig_T1 / 8192.0)) * float(self.dig_T3)
+        print 'var2= {}'.format(var2)
         self.t_fine = int(var1 + var2)
         temp = (var1 + var2) / 5120.0
         return temp
