@@ -144,6 +144,7 @@ class BME280(object):
         sleep_time = sleep_time + 0.0023 * (1 << self._mode) + 0.000575
         sleep_time = sleep_time + 0.0023 * (1 << self._mode) + 0.000575
         time.sleep(sleep_time)  # Wait the required time
+        print 'sleep time = {}'.format(sleep_time)
         msb = self._device.readU8(BME280_REGISTER_TEMP_DATA)
         lsb = self._device.readU8(BME280_REGISTER_TEMP_DATA + 1)
         xlsb = self._device.readU8(BME280_REGISTER_TEMP_DATA + 2)
@@ -182,6 +183,7 @@ class BME280(object):
         UT / 131072.0 - self.dig_T1 / 8192.0)) * float(self.dig_T3)
         print 'var2= {}'.format(var2)
         self.t_fine = int(var1 + var2)
+        print 'calculated t_fine = {}'.format(self.t_fine)
         temp = (var1 + var2) / 5120.0
         return temp
 
